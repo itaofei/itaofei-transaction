@@ -1,0 +1,36 @@
+# eclipse work directory
+.settings
+.metadata
+.recommenders
+.classpath
+.project
+RemoteSystemsTempFiles
+Servers
+
+# intellij work directory
+.idea
+*.iml
+*.ipr
+*.iws
+*.bak
+projectFilesBackup
+
+# gradle work directory
+build
+bin
+target
+.gradle
+classes
+.cache
+.cache-*
+*.class
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/.project
+
+# Temporary Files #
+*.log.*
