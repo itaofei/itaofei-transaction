@@ -20,6 +20,7 @@
             <artifactId>spring-context</artifactId>
         </dependency>
 
+        <!-- ########## logger dependency start ########## -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -48,6 +49,7 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-nosql</artifactId>
         </dependency>
+        <!-- ########## logger dependency end ########## -->
 
         <!-- ########## jdbc dependency start ########## -->
         <dependency>
@@ -90,5 +92,21 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>itaofei.jdbc.transaction.entrypoint.Application</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
