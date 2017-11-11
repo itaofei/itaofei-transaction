@@ -8,7 +8,7 @@ RemoteSystemsTempFiles
 Servers
 
 # intellij work directory
-.idea
+.idea/*
 *.iml
 *.ipr
 *.iws

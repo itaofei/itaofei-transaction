@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <properties>
+        <!-- 文件输出格式 -->
+        <property name="PATTERN">
+            %X{logid},[%-5level],%d{yyyy-MM-dd hh:mm:ss.SSS},%c{1}: %msg%n
+        </property>
+        <!-- 日志根路径 -->
+        <property name="basePath">
+            /tmp
+        </property>
+        <!-- 日志文件名称 -->
+        <property name="itaofei-jdbc-transaction-log">
+            ${basePath}/itaofei-jdbc-transaction.log
+        </property>
+        <!-- 日志动态生成规则 -->
+        <property name="rollingfile-itaofei-jdbc-transaction-log">
+            ${basePath}/itaofei-jdbc-transaction%d{yyyy-MM-dd}-%i.log
+        </property>
+    </properties>
+
+    <appenders>
+        <!-- 控制台 -->
+        <Console name="CONSOLE" target="SYSTEM_OUT">
+            <PatternLayout pattern="${PATTERN}" />
+        </Console>
+
+        <Async name="AsyncCONSOLE">
+            <AppenderRef ref="CONSOLE" />
+        </Async>
+
+        <RollingFile name="file-itaofei-jdbc-transaction-log"
+                     filename="${itaofei-jdbc-transaction-log}"
+                     filePattern="${rollingfile-itaofei-jdbc-transaction-log}"
+                     append="true">
+            <Filters>
+                <ThresholdFilter level="error" onMatch="DENY" onMismatch="NEUTRAL" />
+                <ThresholdFilter level="trace" onMatch="ACCEPT" onMismatch="DENY" />
+            </Filters>
+            <PatternLayout pattern="${PATTERN}" />
+            <Policies>
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="100 MB" />
+            </Policies>
+        </RollingFile>
+    </appenders>
+
+    <loggers>
+        <logger name="itaofei-jdbc-transaction" level="info" additivity="false">
+            <appender-ref ref="AsyncCONSOLE" />
+            <appender-ref ref="file-itaofei-jdbc-transaction-log" />
+        </logger>
+
+        <root level="info">
+            <AppenderRef ref="AsyncCONSOLE" />
+        </root>
+
+    </loggers>
+
+</configuration>
